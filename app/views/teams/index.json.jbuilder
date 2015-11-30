@@ -1,0 +1,1 @@
+json.partial! '/teams/index', teams: @teams

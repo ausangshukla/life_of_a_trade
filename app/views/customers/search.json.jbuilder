@@ -1,0 +1,1 @@
+json.partial! '/customers/index', customers: @customers

@@ -1,0 +1,1 @@
+json.partial! '/securities/index', securities: @securities
