@@ -25,10 +25,7 @@ class Ability
   end
 
   def guest_privilages
-    can :read, Contest
-    can :read, Team
-    can [:read, :search], Customer
-    can [:read, :search], Security
+    can :read, :all
   end
 
   def contestant_privilages
@@ -57,6 +54,10 @@ class Ability
     can [:read], User, :contest_id => @user.contest_id
     can [:manage], Customer  
     can [:manage], Security
+  end
+  
+  def super_user_privilages   
+    can [:read, :manage], :all
   end
 
 end
