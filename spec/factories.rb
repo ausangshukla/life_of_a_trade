@@ -83,4 +83,6 @@ FactoryGirl.define do
     liquidity {Security::LIQUIDITY[rand(Security::LIQUIDITY.length)]}
   end
 
+  
+  
 end
