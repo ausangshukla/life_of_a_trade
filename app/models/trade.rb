@@ -5,8 +5,8 @@ class Trade < ActiveRecord::Base
   belongs_to :user
   belongs_to :position
   
-  before_create :new_position  
-  after_create :update_position 
+  # before_create :new_position  
+  # after_create :update_position 
   
   def new_position
     if self.position == nil
@@ -32,7 +32,7 @@ class Trade < ActiveRecord::Base
   
  
   
-  after_save :broadcast
+  # after_save :broadcast
   def broadcast
     json_data = ApplicationController.new.render_to_string(
       :partial => '/trades/show.json', :locals => {:trade=>self}

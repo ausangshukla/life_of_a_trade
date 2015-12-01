@@ -1,7 +1,10 @@
 class TradesController < ApplicationController
   respond_to :json
+  
   before_filter :authenticate_user!
+  
   load_and_authorize_resource :except=>[:create]
+  
   #before_action :set_trade, only: [:show, :edit, :update, :destroy]
 
   # GET /trades
