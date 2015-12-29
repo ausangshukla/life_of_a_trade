@@ -52,8 +52,9 @@ gem 'faker'
 
 
 gem 'thin'
-gem 'rest_client'
+gem 'rest-client'
 gem 'cancan'
 
 gem 'factory_girl_rails'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'swagger-docs', '0.1.8'

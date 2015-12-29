@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
   
-  before_filter :authenticate_user!
-  
+  before_filter :authenticate_user!  
   load_and_authorize_resource
-
+  
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
     render :json=> @users.to_json
   end
 
@@ -18,7 +16,6 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
   end
 
   # GET /users/1/edit
@@ -75,4 +72,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:last_name, :first_name, :email, :role, :team, :company_id)
     end
+    
+    
 end
