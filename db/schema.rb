@@ -13,17 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20160131040117) do
 
-  create_table "ORDERS", force: :cascade do |t|
-    t.datetime "trade_date",                  null: false
-    t.datetime "settlement_date",             null: false
-    t.integer  "security_id",      limit: 8,  null: false
-    t.float    "quantity",         limit: 53, null: false
-    t.float    "price",            limit: 53, null: false
-    t.integer  "user_id",          limit: 8,  null: false
-    t.integer  "order_id",         limit: 8,  null: false
-    t.integer  "matched_order_id", limit: 8,  null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+  create_table "block_amounts", force: :cascade do |t|
+    t.integer  "user_id",               limit: 8
+    t.integer  "order_id",              limit: 8
+    t.float    "blocked_amount",        limit: 53
+    t.float    "actual_amount_charged", limit: 53
+    t.text     "status",                limit: 65535
+    t.datetime "created_at",                          precision: 3
+    t.datetime "updated_at",                          precision: 3
   end
 
   create_table "contests", force: :cascade do |t|
@@ -76,37 +73,36 @@ ActiveRecord::Schema.define(version: 20160131040117) do
     t.datetime "created_at"
   end
 
-
   create_table "market_events", force: :cascade do |t|
-    t.text     "name",         limit: 65535, null: false
-    t.string   "event_type",   limit: 10,    null: false
-    t.string   "summary",      limit: 255,   null: false
+    t.text     "name",         limit: 65535,               null: false
+    t.string   "event_type",   limit: 10,                  null: false
+    t.string   "summary",      limit: 255,                 null: false
     t.text     "description",  limit: 65535
-    t.string   "direction",    limit: 5,     null: false
-    t.string   "intensity",    limit: 10,    null: false
+    t.string   "direction",    limit: 5,                   null: false
+    t.string   "intensity",    limit: 10,                  null: false
     t.string   "asset_class",  limit: 10
     t.string   "region",       limit: 10
     t.string   "sector",       limit: 20
     t.string   "ticker",       limit: 5
     t.text     "external_url", limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 precision: 3
+    t.datetime "updated_at",                 precision: 3
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "exchange",               limit: 10, null: false
-    t.string   "buy_sell",               limit: 5,  null: false
-    t.string   "order_type",             limit: 10, null: false
-    t.integer  "user_id",                limit: 8,  null: false
-    t.integer  "security_id",            limit: 8,  null: false
-    t.float    "quantity",               limit: 53, null: false
-    t.float    "unfilled_qty",           limit: 53, null: false
-    t.float    "price",                  limit: 53, null: false
-    t.string   "pre_trade_check_status", limit: 20, null: false
-    t.string   "trade_status",           limit: 20, null: false
-    t.string   "status",                 limit: 20, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "exchange",               limit: 10,               null: false
+    t.string   "buy_sell",               limit: 5,                null: false
+    t.string   "order_type",             limit: 10,               null: false
+    t.integer  "user_id",                limit: 8,                null: false
+    t.integer  "security_id",            limit: 8,                null: false
+    t.float    "quantity",               limit: 53,               null: false
+    t.float    "unfilled_qty",           limit: 53,               null: false
+    t.float    "price",                  limit: 53,               null: false
+    t.string   "pre_trade_check_status", limit: 20,               null: false
+    t.string   "trade_status",           limit: 20,               null: false
+    t.string   "status",                 limit: 20,               null: false
+    t.datetime "created_at",                        precision: 3
+    t.datetime "updated_at",                        precision: 3
   end
 
   create_table "positions", force: :cascade do |t|
@@ -151,13 +147,17 @@ ActiveRecord::Schema.define(version: 20160131040117) do
     t.integer  "security_id",      limit: 8,     null: false
     t.float    "quantity",         limit: 53,    null: false
     t.float    "price",            limit: 53,    null: false
+    t.text     "buy_sell",         limit: 65535, null: false
     t.integer  "user_id",          limit: 8,     null: false
     t.integer  "order_id",         limit: 8,     null: false
     t.integer  "matched_order_id", limit: 8,     null: false
     t.text     "state",            limit: 65535, null: false
+    t.text     "exchange",         limit: 65535, null: false
+    t.float    "commissions",      limit: 53,    null: false
+    t.float    "taxes",            limit: 53,    null: false
+    t.float    "total_amount",     limit: 53,    null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.string   "buy_sell",         limit: 10,    null: false
   end
 
   create_table "triggered_events", force: :cascade do |t|
