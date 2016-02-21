@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160131040117) do
     t.string   "status",                 limit: 20,               null: false
     t.datetime "created_at",                        precision: 3
     t.datetime "updated_at",                        precision: 3
+    t.string   "ticker",                 limit: 6
   end
 
   create_table "positions", force: :cascade do |t|
@@ -158,6 +159,7 @@ ActiveRecord::Schema.define(version: 20160131040117) do
     t.float    "total_amount",     limit: 53,    null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "ticker",           limit: 6
   end
 
   create_table "triggered_events", force: :cascade do |t|

@@ -31,6 +31,12 @@ namespace :lot do
 	      u.save
 	      puts "User #{u.id}"  
 	    end
+	    
+	    (1..10).each do |j|    
+	      u = FactoryGirl.build(:user, role: "Simulation", account_balance: 1000000000)
+	      u.save
+	      puts "User #{u.id}"  
+	    end 
     
     rescue Exception => exception
       puts exception.backtrace.join("\n")
@@ -56,38 +62,7 @@ namespace :lot do
   end  
   
 
-  desc "generates Contests" 
-  task :generateContests => :environment do
-  	(1..3).each do 
-  		c = FactoryGirl.create(:contest)
-  		FactoryGirl.create(:user, {email: "ca#{c.id}@loat.com", contest_id: c.id, role: "Contest Admin"})
-  	end
-  	
-  	
-  	FactoryGirl.create(:user, {email: "admin@loat.com", password:"admin123", role: "Super User"})
-  end
-  
-  desc "generates Teams" 
-  task :generateTeams => :environment do
-  	Contest.all.each do |c|
-  		(1..5).each do 
-  			FactoryGirl.create(:team, {contest_id:c.id})
-  		end
-  	end
-  end
-  
-  desc "generates Users" 
-  task :generateUsers => :environment do
-  	Team.all.each do |t|
-  		(1..5).each do
-  			role = rand(10) > 5 ? "Contestant" : "Team Admin" 
-  			FactoryGirl.create(:user, {contest_id: t.contest_id, team_id: t.id, role: role})
-  		end
-  		
-  	end
-  	
-  end
-  
+    
   desc "generates Securities" 
   task :generateSecurities => :environment do
 	(1..50).each do
@@ -112,7 +87,7 @@ namespace :lot do
   end
   
   desc "Generating all Fake Data"
-  task :generateFakeAll => [:emptyDB, :generateFakeUsers, :emptyDB, :generateContests, :generateTeams, :generateSecurities, :generateCustomers, :generateTrades] do
+  task :generateFakeAll => [:emptyDB, :generateFakeUsers, :emptyDB, :generateSecurities, :generateCustomers] do
     puts "Generating all Fake Data"
   end
   

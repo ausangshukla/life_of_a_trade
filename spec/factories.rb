@@ -18,7 +18,7 @@ FactoryGirl.define do
     confirmation_sent_at { Time.now }
     confirmed_at { Time.now }
     sign_in_count { 5 }
-    role { user_role ? user_role : "Reader" }
+    role { user_role ? user_role : "Trader" }
 
     trait :new_user do
       confirmed_at nil

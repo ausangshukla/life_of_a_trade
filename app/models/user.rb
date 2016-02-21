@@ -5,4 +5,12 @@ class User < ActiveRecord::Base
           :confirmable, :omniauthable
   
   include DeviseTokenAuth::Concerns::User
+  
+  # Roles for users
+  ADMIN = "Admin"
+  TRADER = "Trader"
+  OPS = "Ops"
+  SIM = "Simulation"
+
+  
 end
