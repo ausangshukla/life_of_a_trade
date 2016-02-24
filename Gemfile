@@ -58,3 +58,6 @@ gem 'cancan'
 gem 'factory_girl_rails'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'swagger-docs', '0.1.8'
+
+# for websocket push
+gem 'faye'
